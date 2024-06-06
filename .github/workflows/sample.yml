@@ -1,4 +1,4 @@
-name: CI
+name: Demo WCS
 
 on:
   push:
@@ -9,5 +9,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - uses: actions/checkout@v4
+      - name: List all files in repo
+        run: ls -a -ll
