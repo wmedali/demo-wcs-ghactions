@@ -1,16 +1,25 @@
-name: newman Tests
+name: Newman
 
-on: push
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
 
 jobs:
-  cypress-run:
-    runs-on: ubuntu-22.04
+  demo:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Clone repository
         uses: actions/checkout@v4
 
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
+      - name: Install newman et le reporter htmlextra
+        run: npm install -g newman newman-reporter-htmlextra
+
+      - name: Executer la collection
+        run: newman run collection.json -r cli,htmlextra
+
+      - name: publish report
+        uses: actions/upload-artifact@v4
         with:
-          spec: cypress/e2e/TestRa.cy.js
-          browser: chrome
+          path: ./newman/*.html
+          name: html-report

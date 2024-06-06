@@ -1,0 +1,19 @@
+name: Cypress traditional
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Installer les dependances
+        run: npm install
+
+      - name: executer les tests
+        run: npx cypress run
