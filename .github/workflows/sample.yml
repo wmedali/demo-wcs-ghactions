@@ -6,9 +6,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  demo:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: List all files in repo
-        run: ls -a -ll
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Executer la collection
+        run: newman run collection.json

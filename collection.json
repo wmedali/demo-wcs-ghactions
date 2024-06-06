@@ -1,0 +1,98 @@
+{
+	"info": {
+		"_postman_id": "1b39603c-6bcb-4860-a27c-2b9487468401",
+		"name": "Simple Books",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24485596"
+	},
+	"item": [
+		{
+			"name": "GET Books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json()",
+							"pm.test('la reponse doit avoir le statut 200', function() {",
+							"    pm.response.to.have.status(200)",
+							"})",
+							"",
+							"pm.test('la reponse est un tableau qui n\\'est pas vide', function() {",
+							"    pm.expect(response).to.be.an('array')",
+							"    pm.expect(response.length).above(1)",
+							"})",
+							"",
+							"//Pour écrire des tests : MochaJS",
+							"//Pour écrire des assertions : Chai JS"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://simple-books-api.glitch.me/books/",
+					"protocol": "https",
+					"host": [
+						"simple-books-api",
+						"glitch",
+						"me"
+					],
+					"path": [
+						"books",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET first Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verifier les propriétés du livre 2\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.eql(2);",
+							"    pm.expect(jsonData.available).to.be.an('boolean')",
+							"    pm.expect(jsonData.author).eql('Cicely Tyson')",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://simple-books-api.glitch.me/books/2",
+					"protocol": "https",
+					"host": [
+						"simple-books-api",
+						"glitch",
+						"me"
+					],
+					"path": [
+						"books",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
