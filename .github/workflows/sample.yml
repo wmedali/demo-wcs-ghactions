@@ -12,8 +12,10 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v4
 
-      - name: Install newman
-        run: npm install -g newman
+      - name: Install newman et le reporter htmlextra
+        run: npm install -g newman newman-reporter-htmlextra
 
       - name: Executer la collection
-        run: newman run collection.json
+        run: newman run collection.json -r cli,htmlextra
+
+      - run: ls -a -ll
