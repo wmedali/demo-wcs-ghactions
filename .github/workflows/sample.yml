@@ -12,5 +12,8 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v4
 
+      - name: Install newman
+        run: npm install -g newman
+
       - name: Executer la collection
         run: newman run collection.json
