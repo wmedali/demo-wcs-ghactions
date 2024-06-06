@@ -18,4 +18,7 @@ jobs:
       - name: Executer la collection
         run: newman run collection.json -r cli,htmlextra
 
-      - run: ls -a -ll
+      - name: publish report
+        uses: actions/upload-artifact@v4
+        with:
+          path: ./newman/*.html
